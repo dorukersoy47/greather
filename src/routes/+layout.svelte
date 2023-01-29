@@ -1,5 +1,5 @@
 <script>
-	import "/src/tailwind.css";
+	import "/src/styles/tailwind.css";
 </script>
 
 <div class="select-none antialiased">
