@@ -2,7 +2,7 @@
 	import "/src/styles/tailwind.css";
 </script>
 
-<div class="select-none antialiased">
+<div class="bg-neutral-100 h-full min-h-screen overflow-x-hidden select-none antialiased">
 	<slot />
 </div>
 

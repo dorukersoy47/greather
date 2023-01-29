@@ -1,1 +1,6 @@
-Hello world
+<script>
+	import EventPage from "../components/EventPage.svelte";
+	import { dummyData } from "../dummyData";
+</script>
+
+<EventPage event={dummyData} />
