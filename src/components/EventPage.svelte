@@ -51,6 +51,6 @@
 	}
 
 	.big-sponsor-icon {
-		animation: rotating 20s linear infinite;
+		animation: rotating 30s linear infinite;
 	}
 </style>
