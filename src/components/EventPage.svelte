@@ -6,6 +6,7 @@
 	import EventCard from "./EventPage/EventCard.svelte";
 
 	export let event: IEvent;
+	console.log(event);
 </script>
 
 <div class="w-screen m-auto p-10 mb-12" style="max-width: 1200px">
@@ -15,7 +16,7 @@
 			<Card noPadding className="self-stretch p-0">
 				<img
 					alt="Event"
-					src={event.eventPhoto}
+					src={""}
 					class="object-cover rounded-3xl h-full w-full" />
 				<div class="h-0">
 					<div

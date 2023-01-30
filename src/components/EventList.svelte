@@ -2,7 +2,7 @@
 	import type IEvent from "../lib/interfaces/IEvent";
 	import EventCard from "./EventPage/EventCard.svelte";
 
-	export let events: Array<IEvent>;
+	export let events: Array<any>;
 </script>
 
 <div class="w-screen m-auto p-10 mb-12" style="max-width: 1200px">

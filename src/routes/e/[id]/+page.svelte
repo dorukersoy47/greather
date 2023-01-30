@@ -1,10 +1,23 @@
-<script lang="ts">
+<script>
 	import { page } from "$app/stores";
+	import { onMount } from "svelte";
 	import EventPage from "../../../components/EventPage.svelte";
-	import { dummyData } from "../../../dummyData";
 
-	const _id = $page.params.id;
-	// @freeturk fetch from api route `/api/events/${_id}`
+	$: e = {};
+
+	onMount(async () => {
+		const _id = await $page.params.id;
+		await fetch(`/api/events/1`)
+			.then((res) => res.json())
+			.then((event) => {
+				e = event;
+				console.log(event);
+			})
+			.catch((err) => {
+				console.log(err);
+				return { err: "err" };
+			});
+	});
 </script>
 
-<EventPage event={dummyData} />
+<EventPage event={e} />

@@ -1,8 +1,20 @@
-<script>
+<script lang="ts">
+	import { onMount } from "svelte";
 	import EventList from "../components/EventList.svelte";
-	import { dummyData } from "../dummyData";
-	let events = [dummyData, dummyData, dummyData, dummyData, dummyData];
-	// @freeturk burda events e tüm existing eventleri pulla
+
+	$: events = [];
+
+	onMount(async () => {
+		fetch("/api/allevents")
+			.then((res) => res.json())
+			.then((data) => {
+				events = data;
+			})
+			.catch((err) => {
+				console.log(err);
+				return [];
+			});
+	});
 </script>
 
 <EventList {events} />

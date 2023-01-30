@@ -6,9 +6,11 @@
 	import Card from "../global/Card.svelte";
 	import EventPoint from "./EventCard/EventPoint.svelte";
 
-	export let event: IEvent;
+	export let event: any;
 	export let fullWidth: boolean = false;
 	export let forEventList: boolean = false;
+
+	console.log(event);
 </script>
 
 <Card noPadding className={`${fullWidth ? "w-full" : "w-[720px]"}`}>
@@ -16,7 +18,7 @@
 		<div class="font-medium text-white text-4xl">
 			<div class="pb-6 pt-5">
 				<div>We are</div>
-				<div class="text-lime-400">{event.title}.</div>
+				<div class="text-lime-400">{event.event.title}.</div>
 			</div>
 			<div class="flex text-sm gap-3 items-center">
 				<img
@@ -32,17 +34,17 @@
 	</div>
 	<div class="p-6">
 		<div class="pb-12 pt-4">
-			<EventPoint key="Where?" value={event.where} />
+			<EventPoint key="Where?" value={event.event.where} />
 			<EventPoint
 				key="When?"
-				value={moment(event.dates.goal).format("LL")} />
-			<EventPoint key="Reward" value={"$" + event.reward} />
+				value={moment(event.event.datesGoal).format("LL")} />
+			<EventPoint key="Reward" value={"$" + event.event.reward} />
 		</div>
 		<div class="flex gap-3 items-center">
 			<Button
 				onClick={() => {
 					if (forEventList) {
-						goto(`/e/${event.id}`);
+						goto(`/e/${event.event.id}`);
 					}
 				}}
 				className="hover:scale-110 hover:-rotate-3 transition-all duration-200">
@@ -53,7 +55,7 @@
 				{/if}
 			</Button>
 			<div class="text-neutral-500 text-sm leading-tight">
-				{event.people.joined} people<br />already registered
+				{event.event.peopleJoined} people<br />already registered
 			</div>
 		</div>
 	</div>
