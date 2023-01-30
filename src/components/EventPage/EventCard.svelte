@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from "$app/navigation";
 	import moment from "moment";
 	import type IEvent from "../../lib/interfaces/IEvent";
 	import Button from "../global/Button.svelte";
@@ -6,9 +7,11 @@
 	import EventPoint from "./EventCard/EventPoint.svelte";
 
 	export let event: IEvent;
+	export let fullWidth: boolean = false;
+	export let forEventList: boolean = false;
 </script>
 
-<Card noPadding className="w-[720px]">
+<Card noPadding className={`${fullWidth ? "w-full" : "w-[720px]"}`}>
 	<div class="bg-neutral-800 rounded-t-3xl px-8 py-14">
 		<div class="font-medium text-white text-4xl">
 			<div class="pb-6 pt-5">
@@ -36,7 +39,19 @@
 			<EventPoint key="Reward" value={"$" + event.reward} />
 		</div>
 		<div class="flex gap-3 items-center">
-			<Button className="hover:scale-110 hover:-rotate-3 transition-all duration-200">I'll be there</Button>
+			<Button
+				onClick={() => {
+					if (forEventList) {
+						goto(`/e/${event.id}`);
+					}
+				}}
+				className="hover:scale-110 hover:-rotate-3 transition-all duration-200">
+				{#if forEventList}
+					Details
+				{:else}
+					I'll be there
+				{/if}
+			</Button>
 			<div class="text-neutral-500 text-sm leading-tight">
 				{event.people.joined} people<br />already registered
 			</div>

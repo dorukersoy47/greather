@@ -1,6 +1,7 @@
 import type IEvent from "./lib/interfaces/IEvent";
 
 export const dummyData: IEvent = {
+	id: 1,
 	title: "planting trees",
 	where: "Göktürk Ormanı, İstanbul",
 	reward: 10,

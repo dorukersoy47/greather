@@ -1,4 +1,5 @@
 export default interface IEvent {
+	id: number;
 	title: string;
 	where: string;
 	reward: number;
