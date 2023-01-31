@@ -1,23 +1,8 @@
-<script>
-	import { page } from "$app/stores";
-	import { onMount } from "svelte";
+<script lang="ts">
 	import EventPage from "../../../components/EventPage.svelte";
+	import type { PageData } from "./$types";
 
-	$: e = {};
-
-	onMount(async () => {
-		const _id = await $page.params.id;
-		await fetch(`/api/events/1`)
-			.then((res) => res.json())
-			.then((event) => {
-				e = event;
-				console.log(event);
-			})
-			.catch((err) => {
-				console.log(err);
-				return { err: "err" };
-			});
-	});
+	export let data: PageData;
 </script>
 
-<EventPage event={e} />
+<EventPage event={data.event} />

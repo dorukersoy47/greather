@@ -1,8 +1,10 @@
 <script lang="ts">
+	import CSVtoArray from "../../lib/csvToArray";
 	import type IEvent from "../../lib/interfaces/IEvent";
 	import Card from "../global/Card.svelte";
-
 	export let event: IEvent;
+
+	$: reqs = CSVtoArray(event.event.requirements)
 </script>
 
 <Card>
@@ -17,7 +19,7 @@
 			<div class="font-bold text-2xl pb-3 text-neutral-800">
 				Requirements
 			</div>
-			{#each event.event.requirements as r}
+			{#each reqs as r}
 				<div>• {r}</div>
 			{/each}
 		</div>

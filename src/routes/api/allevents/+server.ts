@@ -1,7 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 
 import type { RequestHandler } from "@sveltejs/kit";
-import type IEvent from "$lib/interfaces/IEvent";
+import defaultProfilePicture from "../../../lib/defaultProfilePicture";
+import type IEvent from "../../../lib/interfaces/IEvent";
 
 export const GET: RequestHandler = async () => {
 	const prisma = new PrismaClient();
@@ -10,14 +11,20 @@ export const GET: RequestHandler = async () => {
 
 	const sponsors = await prisma.user.findMany();
 
-	const eventout: Array<any> = [];
+	const eventout: Array<IEvent> = [];
 
 	e.forEach((element) => {
 		eventout.push({
 			event: element,
 			sponsor: sponsors.find(
 				(sponsor) => sponsor.id === element.sponsorId,
-			),
+			) ?? {
+				id: -1,
+				photo: defaultProfilePicture,
+				name: "Unknown User",
+				email: "<unknown>",
+				password: "",
+			},
 		});
 	});
 
