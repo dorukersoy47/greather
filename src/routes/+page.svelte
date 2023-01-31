@@ -1,20 +1,20 @@
 <script lang="ts">
-	import { onMount } from "svelte";
-	import EventList from "../components/EventList.svelte";
+	import type IEvent from "../lib/interfaces/IEvent";
 
-	$: events = [];
+	export const load = async ({ fetch, params }) => {
+		const res = await fetch("/api/allevents");
+		console.log(await res.json());
+		const events = (await res.json()) as Array<IEvent>;
+		return {
+			events,
+		};
+	};
 
-	onMount(async () => {
-		fetch("/api/allevents")
-			.then((res) => res.json())
-			.then((data) => {
-				events = data;
-			})
-			.catch((err) => {
-				console.log(err);
-				return [];
-			});
-	});
+	export let events: Array<IEvent>;
 </script>
 
+<!--
 <EventList {events} />
+ -->
+
+{events.toString()}
