@@ -42,6 +42,8 @@
 				onClick={() => {
 					if (forEventList) {
 						goto(`/e/${event.event.id}`);
+					} else {
+						alert("Thank you for registering");
 					}
 				}}
 				className="hover:scale-110 hover:-rotate-3 transition-all duration-200">
