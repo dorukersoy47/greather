@@ -29,6 +29,8 @@ export const GET: RequestHandler = async ({ params }) => {
 			status: 200,
 		});
 	} catch (error) {
-		return new Response(JSON.stringify(eventDummy[_id]), { status: 200 });
+		return new Response(JSON.stringify(eventDummy[_id - 1]), {
+			status: 200,
+		});
 	}
 };
